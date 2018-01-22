@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{187599F2-DCB1-4E48-B620-FAC11697E8B0}</ProjectGuid>
+    <ProjectGuid>{86C2C5A6-4F56-48FE-8066-4B7869B32172}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_01.Reverse_Strings</RootNamespace>
-    <AssemblyName>_01.Reverse_Strings</AssemblyName>
+    <RootNamespace>_03.Decimal_to_Binary_Converter</RootNamespace>
+    <AssemblyName>_03.Decimal_to_Binary_Converter</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="01. Reverse Strings.cs" />
+    <Compile Include="03. Decimal to Binary Converter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

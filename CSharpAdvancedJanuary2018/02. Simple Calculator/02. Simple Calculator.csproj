@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{187599F2-DCB1-4E48-B620-FAC11697E8B0}</ProjectGuid>
+    <ProjectGuid>{9E960986-CADD-4E17-B94F-FE44DC85D630}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_01.Reverse_Strings</RootNamespace>
-    <AssemblyName>_01.Reverse_Strings</AssemblyName>
+    <RootNamespace>_02.Simple_Calculator</RootNamespace>
+    <AssemblyName>_02.Simple_Calculator</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="01. Reverse Strings.cs" />
+    <Compile Include="02. Simple Calculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

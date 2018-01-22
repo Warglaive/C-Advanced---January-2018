@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{187599F2-DCB1-4E48-B620-FAC11697E8B0}</ProjectGuid>
+    <ProjectGuid>{05C2AD66-7BFC-4C0F-9E11-181508957AAA}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_01.Reverse_Strings</RootNamespace>
-    <AssemblyName>_01.Reverse_Strings</AssemblyName>
+    <RootNamespace>_05.Hot_Potato</RootNamespace>
+    <AssemblyName>_05.Hot_Potato</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="01. Reverse Strings.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

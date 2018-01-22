@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{187599F2-DCB1-4E48-B620-FAC11697E8B0}</ProjectGuid>
+    <ProjectGuid>{B7078F2D-D7DB-4E31-AD93-C3A4A418B987}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_01.Reverse_Strings</RootNamespace>
-    <AssemblyName>_01.Reverse_Strings</AssemblyName>
+    <RootNamespace>_04.Matching_Brackets</RootNamespace>
+    <AssemblyName>_04.Matching_Brackets</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="01. Reverse Strings.cs" />
+    <Compile Include="04. Matching Brackets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _01.Reverse_Strings
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
+            var input = Console.ReadLine();
+            var result = new Stack<char>();
+            for (int i = 0; i < input.Length; i++)
+            {
+                result.Push(input[i]);
+            }
+            foreach (var letter in result)
+            {
+                Console.Write(letter);
+            }
+            Console.WriteLine();
         }
     }
 }
