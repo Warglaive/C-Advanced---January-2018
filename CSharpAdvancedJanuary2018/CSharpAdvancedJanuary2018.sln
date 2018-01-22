@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. Reverse Strings", "01. Reverse Strings\01. Reverse Strings.csproj", "{187599F2-DCB1-4E48-B620-FAC11697E8B0}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. Matching Brackets", "04. Matching Brackets\04. Matching Brackets.csproj", "{B7078F2D-D7DB-4E31-AD93-C3A4A418B987}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. Hot Potato", "05. Hot Potato\05. Hot Potato.csproj", "{05C2AD66-7BFC-4C0F-9E11-181508957AAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06. Traffic Jam", "06. Traffic Jam\06. Traffic Jam.csproj", "{97AE4010-6025-4C5E-A751-82C475D063E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{05C2AD66-7BFC-4C0F-9E11-181508957AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05C2AD66-7BFC-4C0F-9E11-181508957AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05C2AD66-7BFC-4C0F-9E11-181508957AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97AE4010-6025-4C5E-A751-82C475D063E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97AE4010-6025-4C5E-A751-82C475D063E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97AE4010-6025-4C5E-A751-82C475D063E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97AE4010-6025-4C5E-A751-82C475D063E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
