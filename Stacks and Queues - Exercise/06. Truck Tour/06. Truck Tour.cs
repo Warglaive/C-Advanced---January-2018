@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _06.Truck_Tour
 {
@@ -10,18 +8,37 @@ namespace _06.Truck_Tour
     {
         public static void Main()
         {
-            var queue = new Queue<int>();
             var n = int.Parse(Console.ReadLine());
+            var queue = new Queue<int[]>();
             for (int i = 0; i < n; i++)
             {
-                var currentInt = Console.ReadLine()
+                var pump = Console.ReadLine()
                     .Split(' ')
                     .Select(int.Parse)
-                    .ToList();
-                var petrolAmount = currentInt[0];
-                var distanceBetweenPumps = currentInt[1];
-                //calculate total circle and fuel - 12 km, got fuel for 14
-
+                    .ToArray();
+                queue.Enqueue(pump);
+            }
+            for (int currentStart = 0; currentStart < n - 1; currentStart++)
+            {
+                var fuel = 0;
+                for (int pumpsPassed = 0; pumpsPassed < n; pumpsPassed++)
+                {
+                    var currentPump = queue.Dequeue();
+                    var fuelGiven = currentPump[0];
+                    var distanceTillNextPuml = currentPump[1];
+                    queue.Enqueue(currentPump);
+                    fuel += fuelGiven - distanceTillNextPuml;
+                    if (fuel < 0)
+                    {
+                        currentStart += pumpsPassed;
+                        break;
+                    }
+                }
+                if (fuel > 0)
+                {
+                    Console.WriteLine(currentStart);
+                    return;
+                }
             }
         }
     }
