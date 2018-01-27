@@ -8,8 +8,6 @@ namespace _04._Maximal_Sum
     {
         public static void Main()
         {
-            var cacheSums = new Stack<int>();
-
             var size = Console.ReadLine()
                 .Split(new[] { ' ' }
                     , StringSplitOptions.RemoveEmptyEntries)
@@ -30,7 +28,9 @@ namespace _04._Maximal_Sum
                 }
             }
             //algorithm
-            var currentSquare = 0;
+            var rowIndex = int.MinValue;
+            var colIndex = int.MinValue;
+            var maxSum = 0;
             for (int startRow = 0; startRow < rowsCount - 2; startRow++)
             {
                 for (var startColumn = 0; startColumn < columnsCount - 2; startColumn++)
@@ -42,18 +42,29 @@ namespace _04._Maximal_Sum
                         {
                             currentRowSum += matrix[rows, columns];
 
-                            if (currentRowSum > currentSquare)
+                            if (currentRowSum > maxSum)
                             {
-                                currentSquare = currentRowSum;
-                                cacheSums.Push(currentSquare);
+                                rowIndex = rows - 1;
+                                colIndex = columns - 1;
+                                maxSum = currentRowSum;
                             }
                         }
                     }
                 }
-
             }
-            //TODO-PRINT BIGGEST MATRIX
-            Console.WriteLine($"Sum = {cacheSums.Pop()}");
+            Console.WriteLine($"Sum = {maxSum}");
+            Console.WriteLine($"{matrix[rowIndex - 1, colIndex - 1]} " +
+                              $"{matrix[rowIndex - 1, colIndex]} " +
+                              $"{matrix[rowIndex - 1, colIndex + 1]}");
+
+            Console.WriteLine($"{matrix[rowIndex, colIndex - 1]} " +
+                              $"{matrix[rowIndex, colIndex]} " +
+                              $"{matrix[rowIndex, colIndex + 1]}");
+
+            Console.WriteLine($"{matrix[rowIndex + 1, colIndex - 1]} " +
+                              $"{matrix[rowIndex + 1, colIndex]} " +
+                              $"{matrix[rowIndex + 1, colIndex + 1]}");
+
         }
     }
 }
