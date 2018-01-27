@@ -28,8 +28,8 @@ namespace _04._Maximal_Sum
                 }
             }
             //algorithm
-            var rowIndex = int.MinValue;
-            var colIndex = int.MinValue;
+            var rowIndex = 0;
+            var colIndex = 0;
             var maxSum = 0;
             for (int startRow = 0; startRow < rowsCount - 2; startRow++)
             {
@@ -53,6 +53,13 @@ namespace _04._Maximal_Sum
                 }
             }
             Console.WriteLine($"Sum = {maxSum}");
+            if (maxSum == 0)
+            {
+                Console.WriteLine($"0 " + $"0 " + $"0");
+                Console.WriteLine($"0 " + $"0 " + $"0");
+                Console.WriteLine($"0 " + $"0 " + $"0");
+                return;
+            }
             Console.WriteLine($"{matrix[rowIndex - 1, colIndex - 1]} " +
                               $"{matrix[rowIndex - 1, colIndex]} " +
                               $"{matrix[rowIndex - 1, colIndex + 1]}");
