@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. Matrix of Palindromes", "ConsoleApp1\01. Matrix of Palindromes.csproj", "{52E9A593-603E-4867-AAED-691DE2B58F92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01. Matrix of Palindromes", "ConsoleApp1\01. Matrix of Palindromes.csproj", "{52E9A593-603E-4867-AAED-691DE2B58F92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. Diagonal Difference", "02. Diagonal Difference\02. Diagonal Difference.csproj", "{A50D8C0B-A786-41B6-A745-B66DFA2A2C88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02. Diagonal Difference", "02. Diagonal Difference\02. Diagonal Difference.csproj", "{A50D8C0B-A786-41B6-A745-B66DFA2A2C88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. Squares in Matrix", "03. Squares in Matrix\03. Squares in Matrix.csproj", "{2B95728A-3FC3-4061-A835-D922D85D0FE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03. Squares in Matrix", "03. Squares in Matrix\03. Squares in Matrix.csproj", "{2B95728A-3FC3-4061-A835-D922D85D0FE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. Maximal Sum", "04. Maximal Sum\04. Maximal Sum.csproj", "{5110121C-0E42-4077-9080-1D2621DDB920}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04. Maximal Sum", "04. Maximal Sum\04. Maximal Sum.csproj", "{5110121C-0E42-4077-9080-1D2621DDB920}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

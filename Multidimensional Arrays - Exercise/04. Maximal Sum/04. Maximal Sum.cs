@@ -8,7 +8,7 @@ namespace _04._Maximal_Sum
     {
         public static void Main()
         {
-            var maxSum = new Stack<int>();
+            var cacheSums = new Stack<int>();
 
             var size = Console.ReadLine()
                 .Split(new[] { ' ' }
@@ -17,7 +17,6 @@ namespace _04._Maximal_Sum
             var rowsCount = size[0];
             var columnsCount = size[1];
             var matrix = new int[rowsCount, columnsCount];
-            var totalSquaresPossible = Math.Floor(rowsCount * columnsCount / 3d);
             //fill in matrix
             for (int rows = 0; rows < rowsCount; rows++)
             {
@@ -31,23 +30,30 @@ namespace _04._Maximal_Sum
                 }
             }
             //algorithm
-            for (int startRow = 0; startRow < totalSquaresPossible; startRow++)
+            var currentSquare = 0;
+            for (int startRow = 0; startRow < rowsCount - 2; startRow++)
             {
-                var biggestSum = 0;
-
-                var currentRowSum = 0;
-                for (int rows = 0; rows < 3; rows++)
+                for (var startColumn = 0; startColumn < columnsCount - 2; startColumn++)
                 {
-                    for (int columns = 0; columns < 3; columns++)
+                    var currentRowSum = 0;
+                    for (var rows = startRow; rows <= startRow + 2; rows++)
                     {
-                        currentRowSum += matrix[rows, columns];
-                        if (currentRowSum > biggestSum)
+                        for (var columns = startColumn; columns <= startColumn + 2; columns++)
                         {
-                            biggestSum = currentRowSum;
+                            currentRowSum += matrix[rows, columns];
+
+                            if (currentRowSum > currentSquare)
+                            {
+                                currentSquare = currentRowSum;
+                                cacheSums.Push(currentSquare);
+                            }
                         }
                     }
                 }
+
             }
+            //TODO-PRINT BIGGEST MATRIX
+            Console.WriteLine($"Sum = {cacheSums.Pop()}");
         }
     }
 }
