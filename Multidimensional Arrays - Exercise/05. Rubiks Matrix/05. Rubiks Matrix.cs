@@ -5,9 +5,8 @@ namespace _05._Rubiks_Matrix
 {
     public class Program
     {
-        private static int[,] matrix;
         private static int rows;
-        private static int columns;
+        private static int cols;
         public static void Main()
         {
             var input = Console.ReadLine()
@@ -15,127 +14,162 @@ namespace _05._Rubiks_Matrix
                 .Select(int.Parse)
                 .ToArray();
             rows = input[0];
-            columns = input[1];
-
-            matrix = new int[rows, columns];
-
-            var rubikMatrix = new int[rows, columns];
-            var number = 0;
+            cols = input[1];
+            var matrix = new int[rows, cols];
+            var rubikMatrix = new int[rows, cols];
+            var counter = 0;
             //Fill in Matrix
-            for (int row = 0; row < rows; row++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int col = 0; col < columns; col++)
+                for (int j = 0; j < cols; j++)
                 {
-                    matrix[row, col] = ++number;
-                    rubikMatrix[row, col] = number;
+                    matrix[i, j] = ++counter;
+                    rubikMatrix[i, j] = counter;
                 }
             }
             //Algorithm
             var commandsCount = int.Parse(Console.ReadLine());
             for (int i = 0; i < commandsCount; i++)
             {
-                var commandArgs = Console.ReadLine().Split(new[] { ' ' }
+                var commands = Console.ReadLine().Split(new[] { ' ' }
                         , StringSplitOptions.RemoveEmptyEntries)
                     .ToArray();
 
-                var command = commandArgs[1];
-                var index = int.Parse(commandArgs[0]);
-                var rotations = int.Parse(commandArgs[2]);
-
-                switch (command)
+                var rowCol = int.Parse(commands[0]);
+                var direction = commands[1];
+                var moves = int.Parse(commands[2]);
+                switch (direction)
                 {
                     case "up":
-                        MoveColumn(index, rows - rotations % rows);
+                        MoveUp(rowCol, moves, matrix);
                         break;
                     case "down":
-                        MoveColumn(index, rotations % rows);
+                        MoveDown(rowCol, moves, matrix);
                         break;
                     case "left":
-                        MoveRow(index, columns - rotations % columns);
+                        MoveLeft(rowCol, moves, matrix);
                         break;
                     case "right":
-                        MoveRow(index, rotations % columns);
+                        MoveRight(rowCol, moves, matrix);
                         break;
-
                 }
             }
-            RearrangeMatrix();
+            rearrangeMatrix(matrix);
         }
 
-        private static void RearrangeMatrix()
+        private static void rearrangeMatrix(int[,] matrix)
         {
-            var expected = 1;
-            for (int row = 0; row < rows; row++)
+            var element = 1;
+            for (int rowIndex = 0; rowIndex < rows; rowIndex++)
             {
-                for (int col = 0; col < columns; col++)
+                for (int colIndex = 0; colIndex < cols; colIndex++)
                 {
-                    if (matrix[row, col] == expected)
+                    if (matrix[rowIndex, colIndex] == element)
                     {
                         Console.WriteLine("No swap required");
-                        expected++;
-                        continue;
                     }
                     else
                     {
                         for (int r = 0; r < rows; r++)
                         {
-                            for (int c = 0; c < columns; c++)
+                            for (int c = 0; c < cols; c++)
                             {
-                                if (matrix[r, c] == expected)
+                                if (matrix[r, c] == element)
                                 {
-                                    int temp = matrix[row, col];
-                                    matrix[row, col] = matrix[r, c];
-                                    matrix[r, c] = temp;
+                                    var currentElement = matrix[rowIndex, colIndex];
+                                    matrix[rowIndex, colIndex] = element;
+                                    matrix[r, c] = currentElement;
                                     Console.WriteLine(
-                                        $"Swap ({row}, {col}) with ({r}, {c})");
-
+                                        $"Swap ({rowIndex}, {colIndex}) " +
+                                        $"with ({r}, {c})");
                                 }
                             }
                         }
                     }
-                    expected++;
+                    element++;
                 }
             }
         }
 
-        private static void MoveRow(int index, int rotations)
+        private static void MoveRight(int rowCol, int moves, int[,] matrix)
         {
-            // rotations %= columns;
-            int[] tempArray = new int[columns];
-            for (int col = 0; col < columns; col++)
+            var columns = cols; //column's count (by input)
+            var tempArray = new int[columns];
+            for (int row = 0; row < columns; row++) //fill col's values in temp array
             {
-                int replacementIndex = col - rotations;
-                if (replacementIndex < 0)
-                {
-                    replacementIndex += columns;
-                }
-                replacementIndex %= columns;
-
-                tempArray[columns] = matrix[replacementIndex, col];
+                tempArray[row] = matrix[rowCol, row];
             }
-            for (int col = 0; col < columns; col++)
+            var counter = tempArray.Length - 1;
+            for (int row = 0; row < tempArray.Length; row++) //change values in matrix from temp array
             {
-                matrix[index, col] = tempArray[col];
+                matrix[rowCol, row] = tempArray[counter];
+                counter++;
+                if (counter > tempArray.Length - 1)
+                {
+                    counter = 0;
+                }
             }
         }
 
-        private static void MoveColumn(int index, int rotations)
+        private static void MoveLeft(int rowCol, int moves, int[,] matrix)
         {
-            // rotations %= rows;
-            int[] tempArray = new int[rows];
-            for (int row = 0; row < rows; row++)
+            var columns = cols; //column's count (by input)
+            var tempArray = new int[columns];
+            for (int row = 0; row < columns; row++) //fill col's values in temp array
             {
-                int replacementIndex = row - rotations;
-                if (replacementIndex < 0)
-                {
-                    replacementIndex += columns;
-                }
-                replacementIndex %= columns;
-                tempArray[row] = matrix[row, replacementIndex];
+                tempArray[row] = matrix[rowCol, row];
             }
-            for (int row = 0; row < rows; row++)
+            var counter = 1;
+            for (int row = 0; row < tempArray.Length; row++) //change values in matrix from temp array
             {
-                matrix[row, index] = tempArray[row];
+                matrix[rowCol, row] = tempArray[counter];
+                counter++;
+                if (counter > tempArray.Length - 1)
+                {
+                    counter = 0;
+                }
+            }
+        }
+
+        private static void MoveDown(int rowCol, int moves, int[,] matrix)
+        {
+            //save current column's values
+            var columns = cols; //column's count (by input)
+            var tempArray = new int[columns];
+            for (int col = 0; col < columns; col++) //fill col's values in temp array
+            {
+                tempArray[col] = matrix[col, rowCol];
+            }
+            var counter = tempArray.Length - 1;
+            for (int col = 0; col < tempArray.Length; col++) //change values in matrix from temp array
+            {
+                matrix[col, rowCol] = tempArray[counter];
+                counter++;
+                if (counter > tempArray.Length - 1)
+                {
+                    counter = 0;
+                }
+            }
+        }
+
+        private static void MoveUp(int rowCol, int moves, int[,] matrix)
+        {
+            //save current column's values
+            var columns = cols; //column's count (by input)
+            var tempArray = new int[columns];
+            for (int col = 0; col < columns; col++) //fill col's values in temp array
+            {
+                tempArray[col] = matrix[col, rowCol];
+            }
+            var counter = 1;
+            for (int col = 0; col < tempArray.Length; col++) //change values in matrix from temp array
+            {
+                matrix[col, rowCol] = tempArray[counter];
+                counter++;
+                if (counter > tempArray.Length - 1)
+                {
+                    counter = 0;
+                }
             }
         }
     }
