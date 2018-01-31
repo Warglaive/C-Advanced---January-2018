@@ -7,5 +7,6 @@ namespace BashSoft
     public static class ExceptionMessages
     {
         public const string exampleExceptionMessage = "Example Message";
+
     }
 }
