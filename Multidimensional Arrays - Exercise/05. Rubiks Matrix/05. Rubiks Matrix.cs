@@ -35,22 +35,23 @@ namespace _05._Rubiks_Matrix
                         , StringSplitOptions.RemoveEmptyEntries)
                     .ToArray();
 
-                var rowCol = int.Parse(commands[0]);
+                var rcIndex = int.Parse(commands[0]);
                 var direction = commands[1];
                 var moves = int.Parse(commands[2]);
+
                 switch (direction)
                 {
                     case "up":
-                        MoveUp(rowCol, moves, matrix);
+                        MoveCol(rcIndex, moves, matrix);
                         break;
                     case "down":
-                        MoveDown(rowCol, moves, matrix);
+                        MoveCol(rcIndex, rows - moves % rows, matrix); //possible bug - matrix length
                         break;
                     case "left":
-                        MoveLeft(rowCol, moves, matrix);
+                        MoveRow(matrix, rcIndex, moves);
                         break;
                     case "right":
-                        MoveRight(rowCol, moves, matrix);
+                        MoveRow(matrix, rcIndex, cols - moves % cols);
                         break;
                 }
             }
@@ -70,6 +71,7 @@ namespace _05._Rubiks_Matrix
                     }
                     else
                     {
+                        // if expectedNumber is different
                         for (int r = 0; r < rows; r++)
                         {
                             for (int c = 0; c < cols; c++)
@@ -80,8 +82,8 @@ namespace _05._Rubiks_Matrix
                                     matrix[rowIndex, colIndex] = element;
                                     matrix[r, c] = currentElement;
                                     Console.WriteLine(
-                                        $"Swap ({rowIndex}, {colIndex}) " +
-                                        $"with ({r}, {c})");
+                                        $"Swap ({rowIndex}, {colIndex}) with ({r}, {c})");
+                                    break;
                                 }
                             }
                         }
@@ -91,85 +93,31 @@ namespace _05._Rubiks_Matrix
             }
         }
 
-        private static void MoveRight(int rowCol, int moves, int[,] matrix)
+        private static void MoveRow(int[,] matrix, int rcIndex, int moves)
         {
-            var columns = cols; //column's count (by input)
-            var tempArray = new int[columns];
-            for (int row = 0; row < columns; row++) //fill col's values in temp array
+            var tempArray = new int[cols];
+            for (int colIndex = 0; colIndex < cols; colIndex++)
             {
-                tempArray[row] = matrix[rowCol, row];
+                tempArray[colIndex] = matrix[rcIndex, (colIndex + moves) % cols];
             }
-            var counter = tempArray.Length - 1;
-            for (int row = 0; row < tempArray.Length; row++) //change values in matrix from temp array
+
+            for (int colIndex = 0; colIndex < rows; colIndex++)
             {
-                matrix[rowCol, row] = tempArray[counter];
-                counter++;
-                if (counter > tempArray.Length - 1)
-                {
-                    counter = 0;
-                }
+                matrix[rcIndex, colIndex] = tempArray[colIndex];
             }
         }
 
-        private static void MoveLeft(int rowCol, int moves, int[,] matrix)
+        private static void MoveCol(int rcIndex, int moves, int[,] matrix)
         {
-            var columns = cols; //column's count (by input)
-            var tempArray = new int[columns];
-            for (int row = 0; row < columns; row++) //fill col's values in temp array
+            var tempArray = new int[rows];
+            for (int rowIndex = 0; rowIndex < rows; rowIndex++)
             {
-                tempArray[row] = matrix[rowCol, row];
+                tempArray[rowIndex] = matrix[(rowIndex + moves) % rows, rcIndex];
             }
-            var counter = 1;
-            for (int row = 0; row < tempArray.Length; row++) //change values in matrix from temp array
-            {
-                matrix[rowCol, row] = tempArray[counter];
-                counter++;
-                if (counter > tempArray.Length - 1)
-                {
-                    counter = 0;
-                }
-            }
-        }
 
-        private static void MoveDown(int rowCol, int moves, int[,] matrix)
-        {
-            //save current column's values
-            var columns = cols; //column's count (by input)
-            var tempArray = new int[columns];
-            for (int col = 0; col < columns; col++) //fill col's values in temp array
+            for (int rowIndex = 0; rowIndex < rows; rowIndex++)
             {
-                tempArray[col] = matrix[col, rowCol];
-            }
-            var counter = tempArray.Length - 1;
-            for (int col = 0; col < tempArray.Length; col++) //change values in matrix from temp array
-            {
-                matrix[col, rowCol] = tempArray[counter];
-                counter++;
-                if (counter > tempArray.Length - 1)
-                {
-                    counter = 0;
-                }
-            }
-        }
-
-        private static void MoveUp(int rowCol, int moves, int[,] matrix)
-        {
-            //save current column's values
-            var columns = cols; //column's count (by input)
-            var tempArray = new int[columns];
-            for (int col = 0; col < columns; col++) //fill col's values in temp array
-            {
-                tempArray[col] = matrix[col, rowCol];
-            }
-            var counter = 1;
-            for (int col = 0; col < tempArray.Length; col++) //change values in matrix from temp array
-            {
-                matrix[col, rowCol] = tempArray[counter];
-                counter++;
-                if (counter > tempArray.Length - 1)
-                {
-                    counter = 0;
-                }
+                matrix[rowIndex, rcIndex] = tempArray[rowIndex];
             }
         }
     }
