@@ -5,14 +5,25 @@ namespace _01._Odd_Lines
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            using (var stream = new StreamReader("test.txt"))
+            var counter = 0;
+            using (var stream = new StreamReader("text.txt"))
             {
-                var length = stream.BaseStream.Length;
-                for (int i = 0; i < length; i++)
+                var currentLine = stream.ReadLine();
+                while (currentLine != null)
                 {
-
+                    if (counter % 2 == 1)
+                    {
+                        Console.WriteLine(currentLine);
+                        counter++;
+                        currentLine = stream.ReadLine();
+                    }
+                    else
+                    {
+                        counter++;
+                        currentLine = stream.ReadLine();
+                    }
                 }
             }
         }
