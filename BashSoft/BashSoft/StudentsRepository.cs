@@ -69,10 +69,10 @@ namespace BashSoft
             }
             return false;
         }
-        private static bool IsQueryForStudentPossiblе(string courseName, string studentUserName)
+        private static bool IsQueryForStudentPossiblе(string studentUserName,string courseName)
         {
             if (studentsByCourse.ContainsKey(courseName)
-                && studentsByCourse.ContainsKey(studentUserName))
+                && studentsByCourse[courseName].ContainsKey(studentUserName))
             {
                 return true;
             }
@@ -82,9 +82,9 @@ namespace BashSoft
             }
             return false;
         }
-        public static void GetStudentsScoresFromCourse(string courseName, string username)
+        public static void GetStudentsScoresFromCourse(string username, string courseName)
         {
-            if (IsQueryForStudentPossiblе(courseName, username))
+            if (IsQueryForStudentPossiblе(username, courseName))
             {
                 OutputWriter.DisplayStudent(new KeyValuePair<string, List<int>>(username, studentsByCourse[courseName][username]));
             }

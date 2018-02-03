@@ -8,7 +8,7 @@ namespace BashSoft
         {
             //IOManager.TraverseDirectory(@"E:\C-Advanced---January-2018\BashSoft");
             StudentsRepository.InitializeData();
-            StudentsRepository.GetAllStudentsFromCourse("Unity");
+            StudentsRepository.GetStudentsScoresFromCourse("Ivan","Unity");
         }
     }
 }
