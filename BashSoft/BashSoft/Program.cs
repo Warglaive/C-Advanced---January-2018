@@ -6,7 +6,9 @@ namespace BashSoft
     {
         static void Main()
         {
-            IOManager.TraverseDirectory(@"E:\C-Advanced---January-2018\BashSoft");
+            //IOManager.TraverseDirectory(@"E:\C-Advanced---January-2018\BashSoft");
+            StudentsRepository.InitializeData();
+            StudentsRepository.GetAllStudentsFromCourse("Unity");
         }
     }
 }
