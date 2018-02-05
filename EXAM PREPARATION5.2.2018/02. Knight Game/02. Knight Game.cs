@@ -31,9 +31,9 @@ namespace _02._Knight_Game
             int count = 0;
             while (true)
             {
-                for (int rowIndex = 0; rowIndex < n - 2; rowIndex++)
+                for (int rowIndex = 0; rowIndex < n; rowIndex++)
                 {
-                    for (int colIndex = 0; colIndex < n - 2; colIndex++)
+                    for (int colIndex = 0; colIndex < n; colIndex++)
                     {
                         if (matrix[rowIndex, colIndex] == "K")
                         {
