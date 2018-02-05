@@ -109,7 +109,8 @@ namespace _01._Dangerous_Floor
         {
             //moves any number of vacant squares in any diagonal direction
             //check if is diagonally
-            if (rowIndex != finalRow && colIndex != finalCol)
+            //POSSIBLE BUG
+            if (Math.Abs(rowIndex - finalRow) == Math.Abs(colIndex - finalCol))
             {
                 MoveBishop(boardMatrix, rowIndex, colIndex, finalRow, finalCol);
             }
