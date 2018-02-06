@@ -45,6 +45,9 @@ namespace _03._Number_Wars
                 {
                     firstPlayerHand.Enqueue(firstCard);
                     firstPlayerHand.Enqueue(secondCard);
+                    //
+                    firstPlayerHand.OrderByDescending(x => x);
+                    //
                     turnsCounter++;
                     continue;
                 }
@@ -52,6 +55,9 @@ namespace _03._Number_Wars
                 {
                     secondPlayerHand.Enqueue(secondCard);
                     secondPlayerHand.Enqueue(firstCard);
+                    //
+                    secondPlayerHand.OrderByDescending(x => x);
+                    //
                     turnsCounter++;
                     continue;
                 }
@@ -71,8 +77,8 @@ namespace _03._Number_Wars
 
                         var firstplayersCurrentThreeCards = new Queue<string>();
                         var secondplayersCurrentThreeCards = new Queue<string>();
-                        if (firstPlayerHand.Count > 3
-                            && secondPlayerHand.Count > 3)
+                        if (firstPlayerHand.Count >= 3
+                            && secondPlayerHand.Count >= 3)
                         {
                             for (int i = 0; i < 3; i++)
                             {
@@ -127,11 +133,17 @@ namespace _03._Number_Wars
             if (firstPlayerHand.Count > secondPlayerHand.Count)
             {
                 Console.WriteLine($"First player wins after {turnsCounter} turns");
+                //Environment.Exit(0);
+            }
+            else if (firstPlayerHand.Count < secondPlayerHand.Count)
+            {
+                Console.WriteLine($"Second player wins after {turnsCounter} turns");
+                // Environment.Exit(0);
             }
             else
             {
-                Console.WriteLine($"Second player wins after {turnsCounter} turns");
-                Environment.Exit(0);
+                Console.WriteLine($"Draw after {turnsCounter} turns");
+                // Environment.Exit(0);
             }
         }
 
