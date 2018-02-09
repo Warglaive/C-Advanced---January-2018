@@ -5,8 +5,8 @@ namespace _02.Radioactive_Bunnies
 {
     public class Program
     {
-        public static int finalRow;
-        public static int finalCol;
+        public static int finalRow = int.MinValue;
+        public static int finalCol = int.MinValue;
         public static void Main()
         {
             var rowsAndColumns = Console.ReadLine()
@@ -32,46 +32,24 @@ namespace _02.Radioactive_Bunnies
                 switch (currentDirection)
                 {
                     case 'U': //Up - towards first line
-
-                        var isAlive = MoveUp(theLair);
-                        if (!isAlive)  // print if dead
-                        {
-                            Print(theLair, finalRow, finalCol, isAlive);
-                            Environment.Exit(0);
-                        }
+                        MoveUp(theLair);
                         break;
                     case 'D':
-                        isAlive = MoveDown(theLair);
-                        if (!isAlive)
-                        {
-                            Print(theLair, finalRow, finalCol, isAlive);
-                            Environment.Exit(0);
-                        }
+                        MoveDown(theLair);
                         break;
                     case 'L':
-                        isAlive = MoveLeft(theLair);
-                        if (!isAlive)
-                        {
-                            Print(theLair, finalRow, finalCol, isAlive);
-                            Environment.Exit(0);
-                        }
+                        MoveLeft(theLair);
                         break;
                     case 'R':
-                        isAlive = MoveRight(theLair);
-                        if (!isAlive)
-                        {
-                            Print(theLair, finalRow, finalCol, isAlive);
-                            Environment.Exit(0);
-                        }
+                        MoveRight(theLair);
                         break;
                 }
             }
 
         }
 
-        private static bool MoveRight(string[,] theLair)
+        private static void MoveRight(string[,] theLair)
         {
-            bool playerIsAlive = true;
             for (int rows = 0; rows < theLair.GetLength(0); rows++)
             {
                 for (int cols = 0; cols < theLair.GetLength(1); cols++)
@@ -83,9 +61,12 @@ namespace _02.Radioactive_Bunnies
                         //if bunny reached when player move - he dies
                         if (theLair[rows, cols + 1] == "B")
                         {
-                            playerIsAlive = false;
                             finalRow = rows;
                             finalCol = cols + 1;
+                            MultiplyBunnies(theLair);
+                            PrintFinalLair(theLair);
+                            Console.WriteLine($"dead: {finalRow} {finalCol}");
+                            Environment.Exit(0);
                         }
                         else
                         {
@@ -105,18 +86,17 @@ namespace _02.Radioactive_Bunnies
                         //put empty on last player possition cuz he exited and won
                         theLair[finalRow, finalCol] = ".";
                         MultiplyBunnies(theLair);//multiply before print winner
-                        Print(theLair, finalRow, finalCol, playerIsAlive);
+                        PrintFinalLair(theLair);
+                        Console.WriteLine($"won: {finalRow} {finalCol}");
                         Environment.Exit(0);
                     }
                 }
             }
             MultiplyBunnies(theLair);
-            return playerIsAlive;
         }
 
-        private static bool MoveLeft(string[,] theLair)
+        private static void MoveLeft(string[,] theLair)
         {
-            bool playerIsAlive = true;
             for (int rows = 0; rows < theLair.GetLength(0); rows++)
             {
                 for (int cols = 0; cols < theLair.GetLength(1); cols++)
@@ -128,9 +108,12 @@ namespace _02.Radioactive_Bunnies
                         //if bunny reached when player move - he dies
                         if (theLair[rows, cols - 1] == "B")
                         {
-                            playerIsAlive = false;
                             finalRow = rows;
                             finalCol = cols - 1;
+                            MultiplyBunnies(theLair);
+                            PrintFinalLair(theLair);
+                            Console.WriteLine($"dead: {finalRow} {finalCol}");
+                            Environment.Exit(0);
                         }
                         else
                         {
@@ -150,18 +133,17 @@ namespace _02.Radioactive_Bunnies
                         //put empty on last player possition cuz he exited and won
                         theLair[finalRow, finalCol] = ".";
                         MultiplyBunnies(theLair);//multiply before print winner
-                        Print(theLair, finalRow, finalCol, playerIsAlive);
+                        PrintFinalLair(theLair);
+                        Console.WriteLine($"won: {finalRow} {finalCol}");
                         Environment.Exit(0);
                     }
                 }
             }
             MultiplyBunnies(theLair);
-            return playerIsAlive;
         }
 
-        private static bool MoveDown(string[,] theLair)
+        private static void MoveDown(string[,] theLair)
         {
-            bool playerIsAlive = true;
             for (int rows = 0; rows < theLair.GetLength(0); rows++)
             {
                 for (int cols = 0; cols < theLair.GetLength(1); cols++)
@@ -173,9 +155,12 @@ namespace _02.Radioactive_Bunnies
                         //if bunny reached when player move - he dies
                         if (theLair[rows + 1, cols] == "B")
                         {
-                            playerIsAlive = false;
                             finalRow = rows + 1;
                             finalCol = cols;
+                            MultiplyBunnies(theLair);
+                            PrintFinalLair(theLair);
+                            Console.WriteLine($"dead: {finalRow} {finalCol}");
+                            Environment.Exit(0);
                         }
                         else
                         {
@@ -195,18 +180,18 @@ namespace _02.Radioactive_Bunnies
                         //put empty on last player possition cuz he exited and won
                         theLair[finalRow, finalCol] = ".";
                         MultiplyBunnies(theLair);//multiply before print winner
-                        Print(theLair, finalRow, finalCol, playerIsAlive);
+                        PrintFinalLair(theLair);
+                        Console.WriteLine($"won: {finalRow} {finalCol}");
                         Environment.Exit(0);
                     }
                 }
             }
             MultiplyBunnies(theLair);
-            return playerIsAlive;
         }
 
-        private static void Print(string[,] theLair, int row, int col, bool isAlive)
+        private static void PrintFinalLair(string[,] theLair)
         {
-            //Print final lair
+            //PrintFinalLair final lair
             for (int rowsIndex = 0; rowsIndex < theLair.GetLength(0); rowsIndex++)
             {
                 for (int colsIndex = 0; colsIndex < theLair.GetLength(1); colsIndex++)
@@ -215,20 +200,10 @@ namespace _02.Radioactive_Bunnies
                 }
                 Console.WriteLine();
             }
-            //Print player
-            if (isAlive)
-            {
-                Console.WriteLine($"won: {row} {col}");
-            }
-            else
-            {
-                Console.WriteLine($"dead: {row} {col}");
-            }
         }
 
-        private static bool MoveUp(string[,] theLair)
+        private static void MoveUp(string[,] theLair)
         {
-            bool playerIsAlive = true;
             for (int rows = 0; rows < theLair.GetLength(0); rows++)
             {
                 for (int cols = 0; cols < theLair.GetLength(1); cols++)
@@ -239,9 +214,12 @@ namespace _02.Radioactive_Bunnies
                         //if bunny reached when player move - he dies
                         if (theLair[rows - 1, cols] == "B")
                         {
-                            playerIsAlive = false;//take final rows where player died
                             finalRow = rows - 1;
                             finalCol = cols;
+                            MultiplyBunnies(theLair);
+                            PrintFinalLair(theLair);
+                            Console.WriteLine($"dead: {finalRow} {finalCol}");
+                            Environment.Exit(0);
                         }
                         else
                         {
@@ -260,13 +238,13 @@ namespace _02.Radioactive_Bunnies
                         //put empty on last player possition cuz he exited and won
                         theLair[finalRow, finalCol] = ".";
                         MultiplyBunnies(theLair);//multiply before print winner
-                        Print(theLair, finalRow, finalCol, playerIsAlive);
+                        PrintFinalLair(theLair);
+                        Console.WriteLine($"won: {finalRow} {finalCol}");
                         Environment.Exit(0);
                     }
                 }
             }
             MultiplyBunnies(theLair);
-            return playerIsAlive;
         }
 
         private static void MultiplyBunnies(string[,] theLair)
@@ -274,6 +252,7 @@ namespace _02.Radioactive_Bunnies
             string[,] tempMatrix = (string[,])theLair.Clone();
             //ako na suotvetniq index ima zaek i v DVETE matrici
             //- razmnojavai, else - ne;
+            bool playerHasDied = false;
             var rowsBorder = theLair.GetLength(0);
             var colsBorder = theLair.GetLength(1);
             for (int rows = 0; rows < rowsBorder; rows++)
@@ -285,27 +264,58 @@ namespace _02.Radioactive_Bunnies
                         //if in border UP;
                         if (rows - 1 >= 0 && theLair[rows - 1, cols] != "B")
                         {
+                            //check if player reached;
+                            if (theLair[rows - 1, cols] == "P" && finalRow < 0 && finalCol < 0)
+                            {
+                                finalRow = rows - 1;
+                                finalCol = cols;
+                                playerHasDied = true;
+                            }
                             theLair[rows - 1, cols] = "B";
                         }
                         //if in border DOWN;
                         if (rows + 1 < rowsBorder && theLair[rows + 1, cols] != "B")
                         {
+                            if (theLair[rows + 1, cols] == "P" && finalRow < 0 && finalCol < 0)
+                            {
+                                finalRow = rows + 1;
+                                finalCol = cols;
+                                playerHasDied = true;
+                            }
                             theLair[rows + 1, cols] = "B";
                         }
                         //if in border LEFT
                         if (cols - 1 >= 0 && theLair[rows, cols - 1] != "B")
                         {
+                            if (theLair[rows, cols - 1] == "P" && finalRow < 0 && finalCol < 0)
+                            {
+                                finalRow = rows;
+                                finalCol = cols - 1;
+                                playerHasDied = true;
+                            }
                             theLair[rows, cols - 1] = "B";
                             cols--;
                         }
                         //if in border RIGHT
                         if (cols + 1 < colsBorder && theLair[rows, cols + 1] != "B")
                         {
+                            if (theLair[rows, cols + 1] == "P" && finalRow < 0 && finalCol < 0)
+                            {
+                                finalRow = rows;
+                                finalCol = cols + 1;
+                                playerHasDied = true;
+                            }
                             theLair[rows, cols + 1] = "B";
                             cols++;
                         }
                     }
                 }
+            }
+            if (playerHasDied)
+            {
+                PrintFinalLair(theLair);
+                Console.WriteLine($"dead: {finalRow} {finalCol}");
+                Environment.Exit(0);
             }
         }
     }
